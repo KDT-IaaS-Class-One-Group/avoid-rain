@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    canvas { background: #eee; }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="1500px" height="800px"></canvas>
+  <script>
+    var canvas = document.getElementById("myCanvas"); // 충돌 배경
+    var ctx = canvas.getContext("2d");  // 충돌 이벤트 공
+    var ctx2= canvas.getContext("2d")
+    var ballRadius = 10; //공 크기
+    var x = canvas.width / 2; //배경 가로 크기
+    var y = canvas.height - 30; //배경 새로 크기
+    var dx = 2;
+    var dy = -4; //공 떨어지는 속도
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = "black";
+      ctx.fill(); // 공 표시
+      ctx.closePath();
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBall();
+      if (y + dy < ballRadius) {
+		dy = -dy
+	} 
+if (y + dy > canvas.height - ballRadius) {
+		alert("GAME OVER")
+		// document.location.reload()
+		// clearInterval(tmp)
+	} else if (y + dy > canvas.height - ballRadius - rectHeight &&
+				x + dx > rectX && x + dx < rectX + rectWidth) {
+		dy = -dy
+	}
+      if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+      }
+      if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+      }
+      x += dx;
+      y += dy;
+    }
+    
+
+    let rectWidth = 50;
+    let rectHeight = 50;
+    let rectX = (canvas.width - rectWidth) / 2;
+    let rectY = (canvas.height - rectHeight) / 2;
+    let rightPressed = false;
+      let leftPressed = false;
+      let upPressed = false;
+      let downPressed = false;
+      document.addEventListener("keydown", keyDownHandler, false);
+      document.addEventListener("keyup", keyUpHandler, false);
+      function keyDownHandler(e) {
+	    if(e.key == 37 || e.key == "ArrowRight") {
+		  rightPressed = true;
+	    }
+	    else if(e.key == 39 || e.key == "ArrowLeft") {
+	    leftPressed = true;
+      }
+      else if(e.key == 38 || e.key == "ArrowUp") {
+	    upPressed = true;
+  }
+  else if(e.key == 40 || e.key == "ArrowDown") {
+	  downPressed = true;
+  }
+}
+function keyUpHandler(e) {
+	if(e.key == 37 || e.key == "ArrowRight") {
+	  rightPressed = false;
+  }
+  else if(e.key == 39 || e.key == "ArrowLeft") {
+	  leftPressed = false;
+  }
+  else if(e.key == 38 || e.key == "ArrowUp") {
+	  upPressed = false;
+  }
+  else if(e.key == 40 || e.key == "ArrowDown") {
+	  downPressed = false;
+  }
+}
+function drawRect2() {
+	ctx2.beginPath();
+  ctx2.rect(rectX, rectY, rectWidth, rectHeight); //--2번째의 Y좌표가 지정이 안 되어 있어서, 위아래 이동이 안됐었음 
+  ctx2.strokeStyle = "black";
+ 
+  // 채우기는 도형의 내부를 color나 gradient, img로 채움
+  // stroke는 외곽선에 색을 칠함
+  ctx2.stroke(); 
+  ctx2.closePath();
+}
+ 
+ 
+// 먼저 전체 Canvas를 지움 > 모든 단일 프레임에 처음부터 모든 것을 그림 > 눌려진 키 변수 확인 
+// 사각형을 그릴 때는 fillRect(), strokeRect(), clearRect()의 메서드 사용
+// 모두 매개변수로 사각형의 x/y좌표, 너비/높이 4가지를 받음 (픽셀단위)
+function draw2() {
+	ctx2.clearRect(0, 0, canvas.width, canvas.height);
+	
+	drawRect2();
+  
+	if(rightPressed && rectX < canvas.width - rectWidth) {
+	  rectX += 5;
+  }
+  else if(leftPressed && rectX > 0) {
+	  rectX -= 5;
+  }
+  else if(downPressed && rectY < canvas.height - rectHeight) {
+	  rectY += 5;
+  }
+  else if(upPressed && rectY > 0) {
+	  rectY -= 5;
+  }
+}
+ 
+var timer1=setInterval(draw, 5);
+// setInterval > 캔버스 내의 움직이는 오브젝트가 있을 때 사용하는 내장함수
+var timer2=setInterval(draw2 , 10);
+  </script>
+</body>
+</html>
