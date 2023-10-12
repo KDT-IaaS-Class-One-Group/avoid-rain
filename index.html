@@ -44,7 +44,7 @@
       let leftPressed = false;
       let upPressed = false;
       let downPressed = false;
-      let pos = 0
+      
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
  
@@ -102,12 +102,12 @@ setInterval(draw, 50);
 
 let interval = setInterval(function(){
   const newDiv = document.createElement('div')
+      let pos = 0
       newDiv.style.width = "3vw"
       newDiv.style.height = "3vw"
       newDiv.style.backgroundColor = "blue"
       newDiv.style.position="absolute"
       let xx = Math.floor(Math.random()* 1400) 
-      let yy = Math.floor(Math.random()* 1) 
       let xString = xx.toString()
       newDiv.style.left = xString+"px"
       newDiv.style.top = "px"
@@ -118,7 +118,7 @@ let interval = setInterval(function(){
       function down(){
         newDiv.style.top = pos + "px"
         pos++
-        if(pos === 900){
+        if(pos === 920){
           clearInterval(interv)
         }
     }}
