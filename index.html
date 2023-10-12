@@ -44,7 +44,7 @@
       let leftPressed = false;
       let upPressed = false;
       let downPressed = false;
-     
+      
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
  
@@ -102,6 +102,7 @@ let count=0
 
 let interval = setInterval(function(){
   const newDiv = document.createElement('div')
+  let pos = 0
       newDiv.style.width = "3vw"
       newDiv.style.height = "3vw"
       newDiv.style.backgroundColor = "blue"
@@ -109,12 +110,28 @@ let interval = setInterval(function(){
       let xx = Math.floor(Math.random()* 1400) 
       let yy = Math.floor(Math.random()* 1) 
       let xString = xx.toString()
-      let yString = yy.toString()
       newDiv.style.left = xString+"px"
       
-      canw.appendChild(newDiv)
-      
-    },1000)
+      canw.appendChild(newDiv)  
+      console.log(pos)
+      console.log(newDiv)
+
+
+      setTimeout(() => {
+        newDiv.remove();
+    },30000);
+     
+      let interv = setInterval(down, 50)
+      function down(){
+        pos++
+        newDiv.style.top = pos + "px"
+        if(pos === 900){
+        }
+
+    }}
+    ,1000)
+
+    
     </script>    
   </body>
   </html>
