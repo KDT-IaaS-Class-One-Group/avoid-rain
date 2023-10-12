@@ -30,17 +30,20 @@
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawBall();
-      if (y + dy < ballRadius) {
-		dy = -dy
-	} 
-if (y + dy > canvas.height - ballRadius) {
-		alert("GAME OVER")
+    //   if (y + dy < ballRadius) {
+		// dy = -dy}
+	  if (y + dy > canvas.height - ballRadius - rectY &&
+				x + dx > rectX && x + dx < rectX + rectWidth) {
+          dx = -dx
+          dy = -dy
+		// alert("GAME OVER")
 		// document.location.reload()
 		// clearInterval(tmp)
-	} else if (y + dy > canvas.height - ballRadius - rectHeight &&
-				x + dx > rectX && x + dx < rectX + rectWidth) {
-		dy = -dy
 	}
+  // if (y + dy < canvas.height - ballRadius - rectY &&
+	// 			x + dx > rectX && x + dx < rectX + rectWidth) {
+  //         dy= -dy
+  //       }
       if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
       }
@@ -109,7 +112,6 @@ function draw2() {
 	ctx2.clearRect(0, 0, canvas.width, canvas.height);
 	
 	drawRect2();
-  
 	if(rightPressed && rectX < canvas.width - rectWidth) {
 	  rectX += 5;
   }
@@ -123,10 +125,11 @@ function draw2() {
 	  rectY -= 5;
   }
 }
+
  
-var timer1=setInterval(draw, 5);
+var timer1=setInterval(draw, 10);
 // setInterval > 캔버스 내의 움직이는 오브젝트가 있을 때 사용하는 내장함수
-var timer2=setInterval(draw2 , 10);
+var timer2=setInterval(draw2 ,20);
   </script>
 </body>
 </html>

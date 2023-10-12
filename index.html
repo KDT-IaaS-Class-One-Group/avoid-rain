@@ -107,7 +107,7 @@ let interval = setInterval(function(){
       newDiv.style.height = "3vw"
       newDiv.style.backgroundColor = "blue"
       newDiv.style.position="absolute"
-      let xx = Math.floor(Math.random()* 1400) 
+      let xx = Math.floor(Math.random()* 1500) 
       let yy = Math.floor(Math.random()* 1) 
       let xString = xx.toString()
       newDiv.style.left = xString+"px"
@@ -119,9 +119,9 @@ let interval = setInterval(function(){
 
       setTimeout(() => {
         newDiv.remove();
-    },30000);
+    },26000);
      
-      let interv = setInterval(down, 50)
+      let interv = setInterval(down, 30)
       function down(){
         pos++
         newDiv.style.top = pos + "px"
