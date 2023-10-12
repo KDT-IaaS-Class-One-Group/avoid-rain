@@ -44,7 +44,7 @@
       let leftPressed = false;
       let upPressed = false;
       let downPressed = false;
-     
+      let pos = 0
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
  
@@ -109,14 +109,22 @@ let interval = setInterval(function(){
       let xx = Math.floor(Math.random()* 1400) 
       let yy = Math.floor(Math.random()* 1) 
       let xString = xx.toString()
-      let yString = yy.toString()
       newDiv.style.left = xString+"px"
-      newDiv.style.top = yString+"px"
-      canw.appendChild(newDiv)
-
-
-}
+      newDiv.style.top = "px"
+      canw.appendChild(newDiv)  
+      console.log(pos)
+      
+      let interv = setInterval(down, 10)
+      function down(){
+        newDiv.style.top = pos + "px"
+        pos++
+        if(pos === 900){
+          clearInterval(interv)
+        }
+    }}
     ,1000)
+
+    
     </script>    
   </body>
   </html>
