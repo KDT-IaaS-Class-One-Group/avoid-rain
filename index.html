@@ -98,7 +98,7 @@ function draw() {
   }
 }
 setInterval(draw, 50);
-
+let count=0
 
 let interval = setInterval(function(){
   const newDiv = document.createElement('div')
@@ -111,12 +111,10 @@ let interval = setInterval(function(){
       let xString = xx.toString()
       let yString = yy.toString()
       newDiv.style.left = xString+"px"
-      newDiv.style.top = yString+"px"
+      
       canw.appendChild(newDiv)
-
-
-}
-    ,1000)
+      
+    },1000)
     </script>    
   </body>
   </html>
