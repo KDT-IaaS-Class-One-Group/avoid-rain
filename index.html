@@ -15,14 +15,22 @@
       justify-content: center;
       align-items: center;
      }
+     #canvaswrap{
+      width:90vw;
+      height:100vh;
+      position: relative
+     }
     </style>
   </head>
   <body>
     <div class="title">
       <strong>It's raining from the sky</strong>
     </div>
+    <div id="canvaswrap">
     <canvas id="canvas"></canvas>
+    </div>
     <script>
+      let canw= document.getElementById("canvaswrap")
       let canvas = document.getElementById("canvas");
       let ctx = canvas.getContext("2d");
       let x = canvas.width / 2;
@@ -97,15 +105,14 @@ let interval = setInterval(function(){
       newDiv.style.width = "3vw"
       newDiv.style.height = "3vw"
       newDiv.style.backgroundColor = "red"
-      newDiv.style.borderRadius = "30px"
       newDiv.style.position="absolute"
-      let xx = Math.floor(Math.random()* 30) 
-      let yy = Math.floor(Math.random()* 20) 
+      let xx = Math.floor(Math.random()* 1400) 
+      let yy = Math.floor(Math.random()* 1) 
       let xString = xx.toString()
       let yString = yy.toString()
       newDiv.style.left = xString+"px"
       newDiv.style.top = yString+"px"
-      canvas.appendChild(newDiv)
+      canw.appendChild(newDiv)
 
 
 }
