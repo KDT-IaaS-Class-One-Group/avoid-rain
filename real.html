@@ -17,7 +17,7 @@
     var ctx2= canvas.getContext("2d")
     var ballRadius = 10; //공 크기
     var x = canvas.width / 2; //배경 가로 크기
-    var y = canvas.height - 30; //배경 새로 크기
+    var y = canvas.height - 50; //배경 새로 크기
     var dx = 2;
     var dy = -4; //공 떨어지는 속도
     function drawBall() {
@@ -27,6 +27,7 @@
       ctx.fill(); // 공 표시
       ctx.closePath();
     }
+    window.onload = setTimeout(
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       drawBall();
@@ -34,7 +35,7 @@
 		// dy = -dy}
 	  if (y + dy > canvas.height - ballRadius - rectY &&
 				x + dx > rectX && x + dx < rectX + rectWidth) {
-          dx = -dx
+          
           dy = -dy
 		// alert("GAME OVER")
 		// document.location.reload()
@@ -52,7 +53,8 @@
       }
       x += dx;
       y += dy;
-    }
+      setTimeout(draw, 10)
+    },10)
     
 
     let rectWidth = 50;
@@ -95,20 +97,19 @@ function keyUpHandler(e) {
 }
 function drawRect2() {
 	ctx2.beginPath();
-  ctx2.rect(rectX, rectY, rectWidth, rectHeight); //--2번째의 Y좌표가 지정이 안 되어 있어서, 위아래 이동이 안됐었음 
+  ctx2.rect(rectX, rectY, rectWidth, rectHeight); 
   ctx2.strokeStyle = "black";
  
-  // 채우기는 도형의 내부를 color나 gradient, img로 채움
-  // stroke는 외곽선에 색을 칠함
+  
   ctx2.stroke(); 
   ctx2.closePath();
 }
  
  
-// 먼저 전체 Canvas를 지움 > 모든 단일 프레임에 처음부터 모든 것을 그림 > 눌려진 키 변수 확인 
-// 사각형을 그릴 때는 fillRect(), strokeRect(), clearRect()의 메서드 사용
-// 모두 매개변수로 사각형의 x/y좌표, 너비/높이 4가지를 받음 (픽셀단위)
+
 function draw2() {
+  
+
 	ctx2.clearRect(0, 0, canvas.width, canvas.height);
 	
 	drawRect2();
@@ -126,10 +127,10 @@ function draw2() {
   }
 }
 
- 
-var timer1=setInterval(draw, 10);
+
+// 
 // setInterval > 캔버스 내의 움직이는 오브젝트가 있을 때 사용하는 내장함수
-var timer2=setInterval(draw2 ,20);
+var timer2=window.setInterval(draw2 ,5);
   </script>
 </body>
 </html>
